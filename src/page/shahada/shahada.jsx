@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import  { useState, useRef, useEffect } from "react";
 import listen from "../../assets/listening.png";
 import talk from "../../assets/talk.png";
 import wrong from "../../assets/wrong.png";
@@ -6,6 +6,7 @@ import active from "../../assets/active.png";
 // Import audio files
 import EnglishPartOne from "../../assets/english-part-one.mp3";
 import EnglishPartTwo from "../../assets/english-part-tow.mp3";
+import { Link } from "react-router-dom";
 
 const Shahada = () => {
   const [listening, setListening] = useState(false);
@@ -193,16 +194,15 @@ const Shahada = () => {
 
   return (
     <div className="text-center ">
-      <h1 className="text-slate-800 dark:text-white md:text-[50px] text-[30px] ">SHAHADA</h1>
+      <h1 className="text-slate-800 dark:text-white md:text-[50px] text-[30px] ">
+        SHAHADA
+      </h1>
       <p className="text-slate-800 dark:text-white mb-[50px] md:text-[30px] text-[22px]">
         Your first step on your path to Islam.
       </p>
       <div>
         {highlightedText.map((wordObj, index) => (
-          <span
-            key={index}
-            style={{ color: wordObj.correct ? "green" : "green" }}
-          >
+          <span key={index} className="text-slate-800 dark:text-white">
             {wordObj.text}{" "}
           </span>
         ))}
@@ -234,13 +234,35 @@ const Shahada = () => {
           )}
         </div>
       )}
-      <button
+
+      <div>
+        {imageStatus === "done" ? (
+          <div>
+            <p className="text-slate-800 dark:text-white mb-[50px] md:text-[30px] text-[22px]">
+              Shahada in Arabic
+            </p>
+            <Link to="/shahada-arabic">
+              <button className="px-[30px] py-[5px] md:px-[50px]  border-[2px] border-slate-800 dark:border-white text-slate-800 dark:text-white rounded-md ">
+                contune
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <button
+            onClick={handleStartStopClick}
+            className="px-[30px] py-[5px] md:px-[50px]  border-[2px] border-slate-800 dark:border-white text-slate-800 dark:text-white rounded-md "
+          >
+            {listening ? "Stop Listening" : "Start Listening"}
+          </button>
+        )}
+      </div>
+      {/* <button
         onClick={handleStartStopClick}
         className="px-[30px] py-[5px] md:px-[50px]  border-[2px] border-slate-800 dark:border-white text-slate-800 dark:text-white rounded-md "
       >
         {listening ? "Stop Listening" : "Start Listening"}
-      </button>
-      {error && <p>Error: {error}</p>}
+      </button> */}
+      {error && <p className="text-[red] my-2 text-[18px]">Error: {error}</p>}
       <audio ref={audioRef} src={audioFiles[partIndex]} />
     </div>
   );
