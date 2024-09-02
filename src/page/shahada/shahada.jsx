@@ -186,8 +186,10 @@ const Shahada = () => {
       audioRef.current.addEventListener("play", handleAudioPlay);
 
       return () => {
-        audioRef.current.removeEventListener("ended", handleAudioEnd);
-        audioRef.current.removeEventListener("play", handleAudioPlay);
+        if (audioRef.current) {
+          audioRef.current.removeEventListener("ended", handleAudioEnd);
+          audioRef.current.removeEventListener("play", handleAudioPlay);
+        }
       };
     }
   }, [partIndex]);
