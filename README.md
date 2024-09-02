@@ -32,4 +32,4 @@ To install the dependencies, follow these steps:
 
 ## Live demo
 
-- https://shahada-misraj-test-fdn7.vercel.app/
+-https://test-misraj-shahada.vercel.app/
